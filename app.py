@@ -15,31 +15,47 @@ st.set_page_config(
     }
 )
 
-# Nuevo CSS más agresivo para ocultar la sidebar y el botón
+# CSS actualizado para ocultar sidebar y elementos en Streamlit Community
 st.markdown("""
 <style>
-    /* Ocultar completamente el sidebar y su botón */
-    .css-1d391kg, .css-1siy2j7, .css-ccm30r {
+    /* Ocultar completamente el sidebar */
+    section[data-testid="stSidebar"] {
+        display: none !important;
+        width: 0px !important;
+        height: 0px !important;
+        margin: 0px !important;
+        padding: 0px !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        z-index: -1 !important;
+    }
+    
+    /* Ocultar el botón de expansión del sidebar */
+    button[kind="header"] {
         display: none !important;
     }
     
-    /* Ocultar el botón de hamburguesa */
-    .st-emotion-cache-h5rgaw, .st-emotion-cache-1egp75f {
+    /* Ocultar el botón de hamburguesa y otros elementos relacionados */
+    .st-emotion-cache-h5rgaw,
+    .st-emotion-cache-1egp75f,
+    .st-emotion-cache-z5fcl4,
+    .st-emotion-cache-1dp5vir,
+    .st-emotion-cache-18ni7ap div[data-testid="stToolbar"] {
         display: none !important;
-        visibility: hidden !important;
-        width: 0 !important;
-        height: 0 !important;
+        width: 0px !important;
+        height: 0px !important;
         position: absolute !important;
         left: -9999px !important;
     }
     
-    /* Remover cualquier espacio reservado para el sidebar */
+    /* Ajustar el contenedor principal */
     .main .block-container {
         max-width: 100%;
         padding-left: 1rem;
         padding-right: 1rem;
         padding-top: 2rem;
         padding-bottom: 2rem;
+        margin: 0;
     }
     
     /* Asegurar que el contenido ocupe todo el ancho */
@@ -50,8 +66,13 @@ st.markdown("""
     }
     
     /* Ocultar otros elementos de Streamlit */
-    #MainMenu, header, footer, [data-testid="stToolbar"] {
+    #MainMenu, header, footer {
         display: none !important;
+    }
+    
+    /* Remover espacio adicional */
+    .css-k1ih3n, .css-4z1n4l {
+        padding: 0 !important;
     }
 </style>
 """, unsafe_allow_html=True)
