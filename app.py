@@ -237,7 +237,7 @@ def create_project_button(icon, title, description, key, url):
         target = '_blank'
     else:
         # Para páginas internas, usa el formato correcto de Streamlit
-        link_url = f'./{url}'
+        link_url = url if url.startswith('/') else f'/{url}'
         target = '_self'
     
     button_html = f"""
@@ -280,14 +280,14 @@ projects = [
         "title": "Visualizaciones Avanzadas",
         "description": "Dashboards interactivos con ECharts, gráficos dinámicos y análisis visual de datos complejos",
         "key": "charts",
-        "url": "charts"
+        "url": "/charts"
     },
     {
         "icon": "layout-dashboard",
         "title": "Dashboards Inteligentes",
         "description": "Panel de control integral con métricas en tiempo real y análisis predictivo",
         "key": "dashboard",
-        "url": "dashboard"
+        "url": "/dashboard"
     },
     {
         "icon": "telescope",
@@ -301,7 +301,7 @@ projects = [
         "title": "Chatbots & AI",
         "description": "Asistentes conversacionales inteligentes y soluciones de procesamiento de lenguaje natural",
         "key": "chatbots",
-        "url": "chat"
+        "url": "/chat"
     }
 ]
 
