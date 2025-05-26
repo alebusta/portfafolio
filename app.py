@@ -237,7 +237,7 @@ def create_project_button(icon, title, description, key, url):
         target = '_blank'
     else:
         # Para páginas internas, usa el formato correcto de Streamlit
-        link_url = url if url.startswith('/') else f'/{url}'
+        link_url = url if url.startswith('/') else f'{url}'
         target = '_self'
     
     button_html = f"""
