@@ -233,24 +233,31 @@ def create_project_button(icon, title, description, key, url):
     is_external = url.startswith('http')
     
     if is_external:
-        link_url = url
-        target = '_blank'
+        button_html = f"""
+        <div class="project-container">
+            <a href="{url}" target="_blank" style="text-decoration: none; display: block;">
+                <div class="project-button">
+                    <div class="project-icon">{icon_html}</div>
+                    <div class="project-title">{title}</div>
+                    <div class="project-description">{description}</div>
+                </div>
+            </a>
+        </div>
+        """
     else:
-        # Para páginas internas, usa el formato correcto de Streamlit
-        link_url = url if url.startswith('/') else f'/{url}'
-        target = '_self'
-    
-    button_html = f"""
-    <div class="project-container">
-        <a href="{link_url}" target="{target}" style="text-decoration: none; display: block;">
-            <div class="project-button">
+        # Para páginas internas, usar onclick que llame a streamlit
+        button_html = f"""
+        <div class="project-container">
+            <div class="project-button" 
+                 onclick="parent.window.location.href='{url}'" 
+                 style="cursor: pointer;">
                 <div class="project-icon">{icon_html}</div>
                 <div class="project-title">{title}</div>
                 <div class="project-description">{description}</div>
             </div>
-        </a>
-    </div>
-    """
+        </div>
+        """
+    
     return button_html
 
 # JavaScript para manejar selección
@@ -280,14 +287,14 @@ projects = [
         "title": "Visualizaciones Avanzadas",
         "description": "Dashboards interactivos con ECharts, gráficos dinámicos y análisis visual de datos complejos",
         "key": "charts",
-        "url": "/charts"
+        "url": "charts"
     },
     {
         "icon": "layout-dashboard",
         "title": "Dashboards Inteligentes",
         "description": "Panel de control integral con métricas en tiempo real y análisis predictivo",
         "key": "dashboard",
-        "url": "/dashboard"
+        "url": "dashboard"
     },
     {
         "icon": "telescope",
@@ -301,7 +308,7 @@ projects = [
         "title": "Chatbots & AI",
         "description": "Asistentes conversacionales inteligentes y soluciones de procesamiento de lenguaje natural",
         "key": "chatbots",
-        "url": "/chat"
+        "url": "chat"
     }
 ]
 
