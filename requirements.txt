@@ -1,2 +1,8 @@
 streamlit>=0.69
 streamlit-echarts>=0.4.0
+plotly
+google-generativeai
+requests
+beautifulsoup4
+numpy
+pandas
