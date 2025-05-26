@@ -233,24 +233,24 @@ def create_project_button(icon, title, description, key, url):
     is_external = url.startswith('http')
     
     if is_external:
-        # Para URLs externas
-        button_html = f"""
-        <div class="project-button" onclick="window.open('{url}', '_blank')" style="cursor: pointer;">
-            <div class="project-icon">{icon_html}</div>
-            <div class="project-title">{title}</div>
-            <div class="project-description">{description}</div>
-        </div>
-        """
+        link_url = url
+        target = '_blank'
     else:
-        # Para páginas internas
-        button_html = f"""
-        <div class="project-button" onclick="window.location='/{url}'" style="cursor: pointer;">
-            <div class="project-icon">{icon_html}</div>
-            <div class="project-title">{title}</div>
-            <div class="project-description">{description}</div>
-        </div>
-        """
+        # Para páginas internas, usa el formato correcto de Streamlit
+        link_url = url if url.startswith('/') else f'/{url}'
+        target = '_self'
     
+    button_html = f"""
+    <div class="project-container">
+        <a href="{link_url}" target="{target}" style="text-decoration: none; display: block;">
+            <div class="project-button">
+                <div class="project-icon">{icon_html}</div>
+                <div class="project-title">{title}</div>
+                <div class="project-description">{description}</div>
+            </div>
+        </a>
+    </div>
+    """
     return button_html
 
 # JavaScript para manejar selección
